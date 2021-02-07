@@ -12,6 +12,7 @@ class WMD():
         self.stop_words = stopwords.words('english')
         self.model_path = os.path.join(os.getcwd(), 'app/lsi/GoogleNews-vectors-negative300.bin')
         self.model = gensim.models.KeyedVectors.load_word2vec_format(self.model_path, binary=True)
+        self.model.init_sims(replace=True)
 
     def preprocess(self, sentence):
         return [w for w in sentence.lower().split() if w not in self.stop_words]
